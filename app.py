@@ -4,10 +4,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# ---------------- Load Model & Scaler ----------------
-prediction_model = joblib.load("best_notebook_model_Random_Forest_(Default).joblib")
-cluster_model = joblib.load("notebook_kmeans_model.joblib")
-scaler = joblib.load("notebook_scaler.joblib")
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+prediction_model = joblib.load(os.path.join(BASE_DIR, "best_notebook_model_Random_Forest_(Default).joblib"))
+cluster_model = joblib.load(os.path.join(BASE_DIR, "notebook_kmeans_model.joblib"))
+scaler = joblib.load(os.path.join(BASE_DIR, "notebook_scaler.joblib"))
+df = pd.read_csv(os.path.join(BASE_DIR, "synthetic_household_power.csv"))
 
 # ✅ Cluster Label Mapping
 cluster_labels = {
